@@ -1,17 +1,59 @@
 {% extends './base.html' %}
 
-{% block title %}Главная{% endblock %}
+{% block title %}Подробности объявления{% endblock %}
+<style>
 
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .img-fluid {
+        width: 100%;
+        height: auto;
+    }
+
+    .block {
+        padding: 50px 0;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+
+</style>
 {% block content %}
     <section class="block">
-        <h1>{{ board.title }}</h1>
-        <h3>Категория: {{ board.category }}</h3>
-        <h5>Дата публикации: {{ board.posted.date }}</h5>
-        <img src="{{ board.image }}" alt="">
-        <h3>{{ board.price }}</h3>
-        <h5>Договорная цена: {{ board.is_related_price|yesno:"Да,Нет" }}</h5>
-        <p>{{ board.description }}</p>
-        <h3>{{ board.author_name }}</h3>
-        <h4>{{ board.author_number }}</h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{ board.title }}</h1>
+                    <p class="lead">Категория: {{ board.category }}</p>
+                    <p>Дата публикации: {{ board.posted.date }}</p>
+                    <img class="img-fluid" src="{{ board.image }}" alt="{{ board.title }}">
+                    <p class="lead">Цена: {{ board.price }}</p>
+                    <p>Договорная цена: {{ board.is_related_price|yesno:"Да,Нет" }}</p>
+                    <p>{{ board.description }}</p>
+                    <hr>
+                    <p class="lead">Автор: {{ board.author_name }}</p>
+                    <p>Контактный номер: {{ board.author_number }}</p>
+                </div>
+            </div>
+        </div>
     </section>
 {% endblock %}
